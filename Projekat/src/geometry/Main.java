@@ -37,24 +37,42 @@ public class Main {
 		Point p1 = new Point();
 		Point p2 = new Point();
 		Line l1 = new Line();
-		System.out.println(l1.getStartPoint());
-		System.out.println(l1.getEndPoint());
+//		System.out.println(l1.getStartPoint());
+//		System.out.println(l1.getEndPoint());
 //		Atributu startPoint se dodeljuje referenca p1, nakon cega te dve reference pokazuju
 //		na isti objekat. Ista prica je i za endPoint i p2
 		l1.setStartPoint(p1);
 		l1.setEndPoint(p2);
 		
 //		startPoint i p1 sada pokazuju na isti objekat i to je vidljivo u ispisu na konzoli
-		System.out.println(l1.getStartPoint());
-		System.out.println(p1);
+//		System.out.println(l1.getStartPoint());
+//		System.out.println(p1);
 		
 //		Promena vrednosti x ili y vrednosti tog objekta je moguca kroz i jednu i drugu referencu
 //		Sustinski, u ovom trenutku, p1 i startPoint pokazuju na isti objekat i getX() i getY() kroz
 //		bilo koju referencu ce uvek vratiti isti rezultat
 		p1.setX(50);
-		System.out.println(l1.getStartPoint().getX());
+//		System.out.println(l1.getStartPoint().getX());
 		l1.getStartPoint().setY(20);
-		System.out.println(p1.getY());
+//		System.out.println(p1.getY());
+		
+//		Vezbe 6
+		System.out.println(p1.toString());
+		System.out.println(p1);
+		
+		Line l2 = new Line(new Point(10,20), new Point(50,100));
+		System.out.println(l2);
+		
+		Rectangle r1 = new Rectangle(p1, 50, 50);
+		Rectangle r2 = new Rectangle(p1, 50, 50);
+		
+//		System.out.println(r1.equals(r2));
+//		System.out.println(r1 == r2);
+		
+//		Object test = new Circle();
+		Point p3 = new Point(50,20);
+		System.out.println(p1 == p3);
+		System.out.println(p1.equals(p3));
 		
 		
 		
