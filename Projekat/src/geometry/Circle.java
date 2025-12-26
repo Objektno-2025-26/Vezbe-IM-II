@@ -20,6 +20,23 @@ public class Circle {
 		this.selected = selected;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("Center: (X: %s, Y: %s), radius: %s", 
+				center.getX(), center.getY(), radius);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Circle) {
+			Circle temp = (Circle) o;
+			if(radius == temp.getRadius()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public double area() {
 		return radius*radius*Math.PI;
 	}
