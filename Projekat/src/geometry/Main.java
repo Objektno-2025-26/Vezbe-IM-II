@@ -57,7 +57,7 @@ public class Main {
 //		System.out.println(p1.getY());
 		
 //		Vezbe 6
-		System.out.println(p1.toString());
+	/*	System.out.println(p1.toString());
 		System.out.println(p1);
 		
 		Line l2 = new Line(new Point(10,20), new Point(50,100));
@@ -73,7 +73,11 @@ public class Main {
 		Point p3 = new Point(50,20);
 		System.out.println(p1 == p3);
 		System.out.println(p1.equals(p3));
+	*/
 		
+//		Vezbe 7
+		Donut d1 = new Donut(new Point(50,50),50,30);
+		System.out.println(d1);
 		
 		
 		
