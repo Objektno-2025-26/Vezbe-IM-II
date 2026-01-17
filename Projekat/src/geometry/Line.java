@@ -27,14 +27,27 @@ public class Line extends Shape {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		g.drawLine(startPoint.getX(), startPoint.getY(), 
+				endPoint.getX(), endPoint.getY());
 
 	}
 
 	@Override
 	public boolean contains(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		Point click = new Point(x,y);
+		return (this.length() - (startPoint.distance(click) 
+				+ endPoint.distance(click))) <= 3;
+	}
+	
+	@Override
+	public void moveTo(int x, int y) {
+		// Nije moguca implementacija
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		startPoint.moveBy(byX, byY);
+		endPoint.moveBy(byX, byY);	
 	}
 
 	@Override
@@ -53,6 +66,15 @@ public class Line extends Shape {
 		}
 		return false;
 	}
+	
+	@Override
+	public int compareTo(Shape o) {
+		if(o instanceof Line) {
+			Line temp = (Line)o;
+			return (int) (this.length() - temp.length());
+		}
+		return 0;
+	}
 
 	public Point getStartPoint() {
 		return startPoint;
@@ -69,4 +91,6 @@ public class Line extends Shape {
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
 	}
+
+	
 }

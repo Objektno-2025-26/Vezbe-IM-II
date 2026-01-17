@@ -42,6 +42,20 @@ public class Point extends Shape{
 	}
 	
 	@Override
+	public void moveTo(int x, int y) {
+		this.x = x;
+		this.y = y;
+		
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		this.x += byX;
+		this.y += byY;
+		
+	}
+	
+	@Override
 	public String toString() {
 		return String.format("(X: %s, Y: %s)", x,y);
 	}
@@ -55,6 +69,17 @@ public class Point extends Shape{
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public int compareTo(Shape o) {
+		if(o instanceof Point) {
+			Point temp = (Point)o;
+			Point coordinateStart = new Point(0,0);
+			return (int) (this.distance(coordinateStart) - 
+					temp.distance(coordinateStart));
+		}
+		return 0;
 	}
 	
 	public int getX() {
@@ -73,6 +98,10 @@ public class Point extends Shape{
 	public void setY(int y) {
 		this.y = y;
 	}
+
+
+
+	
 
 	
 	

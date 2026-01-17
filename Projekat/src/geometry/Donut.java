@@ -1,5 +1,7 @@
 package geometry;
 
+import java.awt.Graphics;
+
 public class Donut extends Circle {
 
 	private int innerRadius;
@@ -26,6 +28,19 @@ public class Donut extends Circle {
 	@Override
 	public String toString() {
 		return super.toString() + ", inner radius: " + innerRadius;
+	}
+	
+	@Override
+	public void draw(Graphics g) {
+		super.draw(g); //Iscrtava veliki krug koristeci radius
+		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, 
+				innerRadius, innerRadius);
+	}
+
+	@Override
+	public boolean contains(int x, int y) {
+		Point click = new Point(x,y);
+		return super.contains(x, y) && center.distance(click) >= innerRadius;
 	}
 	
 	@Override

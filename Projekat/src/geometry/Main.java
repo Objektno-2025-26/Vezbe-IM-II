@@ -77,7 +77,9 @@ public class Main {
 		
 //		Vezbe 7
 		Donut d1 = new Donut(new Point(50,50),50,30);
-		System.out.println(d1);
+//		System.out.println(d1);
+		
+//		Vezbe 8
 		
 		
 		

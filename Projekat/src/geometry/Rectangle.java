@@ -25,14 +25,25 @@ public class Rectangle extends Shape {
 	
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		g.drawRect(upperLeft.getX(), upperLeft.getY(), width, height);
 	}
 
 	@Override
 	public boolean contains(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		return (upperLeft.getX() <= x && upperLeft.getX()+width >= x && 
+		   upperLeft.getY() <= y && upperLeft.getY()+height >= y);
+	}
+	
+	@Override
+	public void moveTo(int x, int y) {
+		upperLeft.moveTo(x, y);
+		
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		upperLeft.moveBy(byX, byY);
+		
 	}
 	
 	@Override
@@ -50,6 +61,15 @@ public class Rectangle extends Shape {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public int compareTo(Shape o) {
+		if(o instanceof Rectangle) {
+			Rectangle temp = (Rectangle)o;
+			return this.area() - temp.area();
+		}
+		return 0;
 	}
 	
 	public int area() {
@@ -83,6 +103,8 @@ public class Rectangle extends Shape {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+
+	
 
 	
 
