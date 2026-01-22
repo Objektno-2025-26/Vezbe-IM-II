@@ -34,7 +34,7 @@ public class Donut extends Circle {
 	public void draw(Graphics g) {
 		super.draw(g); //Iscrtava veliki krug koristeci radius
 		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, 
-				innerRadius, innerRadius);
+				innerRadius*2, innerRadius*2);
 	}
 
 	@Override

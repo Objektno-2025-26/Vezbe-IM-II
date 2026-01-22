@@ -23,7 +23,7 @@ public class Circle extends Shape {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawOval(center.getX() - radius, center.getY() - radius, radius, radius);
+		g.drawOval(center.getX() - radius, center.getY() - radius, radius*2, radius*2);
 	}
 
 	@Override
@@ -89,9 +89,15 @@ public class Circle extends Shape {
 		return radius;
 	}
 
-	public void setRadius(int radius) {
+	public void setRadius(int radius) throws Exception {
+		if( !(radius>0) ) {
+			throw new Exception("Radius mora biti veci od 0!");
+		}
 		this.radius = radius;
 
 	}
 
+	
+	
+	
 }

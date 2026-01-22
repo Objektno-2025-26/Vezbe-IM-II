@@ -1,5 +1,7 @@
 package geometry;
 
+import javax.swing.JOptionPane;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -79,7 +81,59 @@ public class Main {
 		Donut d1 = new Donut(new Point(50,50),50,30);
 //		System.out.println(d1);
 		
-//		Vezbe 8
+//		Vezbe 9
+		
+		int[] brojevi = new int[5];
+//		Point[] tacke = new Point[5];
+		
+//		System.out.println(brojevi[3]);
+//		System.out.println(tacke[3]);
+		brojevi[0] = 4;
+		brojevi[1] = 5;
+		brojevi[2] = 6;
+		brojevi[3] = 7;
+		brojevi[4] = 8;
+		
+//		for(int i = brojevi.length - 1; i >= 0; i--) {
+//			System.out.print(brojevi[i] + " ");
+//		}
+		
+		int[] drugiBrojevi = {10,9,8,7,6,5,4,3,2,1};
+		
+/*		for(int i = 0; i < drugiBrojevi.length; i++) {
+//			drugiBrojevi[i] = drugiBrojevi[i] * 5;
+			drugiBrojevi[i] *= 5;
+			System.out.print(drugiBrojevi[i] + " ");
+		}*/
+		
+		try {
+			System.out.println(drugiBrojevi[20]);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		System.out.println("Program i dalje radi!");
+		
+		
+	/*	String xKoordinata = "50  aaa";
+		try {
+			int xKoor  = Integer.valueOf(xKoordinata);
+			JOptionPane.showMessageDialog(null, xKoor);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Unesite samo broj");
+		}*/
+		
+		Circle c1 = new Circle(p1, 80);
+		
+		try {
+			c1.setRadius(50);
+			System.out.println("Radius je: " + c1.getRadius());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+
+
 		
 		
 		
