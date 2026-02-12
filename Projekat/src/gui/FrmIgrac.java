@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ListSelectionModel;
 
 public class FrmIgrac extends JFrame {
 
@@ -134,7 +135,8 @@ public class FrmIgrac extends JFrame {
 		gbc_scrollPane.gridy = 1;
 		panelCenter.add(scrollPane, gbc_scrollPane);
 		
-		JList list = new JList();
+		JList<String> list = new JList<String>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		dlm = new DefaultListModel<String>();
 		list.setModel(dlm);
 		list.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -168,10 +170,44 @@ public class FrmIgrac extends JFrame {
 		contentPane.add(panelSouth, BorderLayout.SOUTH);
 		
 		JButton btnAdd = new JButton("Dodaj igraca");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgIgrac dlg = new DlgIgrac();
+				dlg.setVisible(true);
+				if(dlg.isOkay()) {
+					dlm.add(0, dlg.getTextFieldIme().getText()
+							+ " " + dlg.getTextFieldPrezime().getText());
+				}
+				
+			}
+		});
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panelSouth.add(btnAdd);
 		
 		JButton btnModify = new JButton("Modifikacija");
+		btnModify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.isSelectionEmpty()) return;
+				String selektovano = list.getSelectedValue();
+				int index = list.getSelectedIndex();
+				DlgIgrac dlg = new DlgIgrac();
+//				selektovano = Erling Haland
+//				metoda split deli string po odredjenom karakteru i podstringove smesta u niz
+				dlg.setIme(selektovano.split(" ")[0]);
+				try {
+					dlg.setPrezime(selektovano.split(" ")[1]);
+				} catch (ArrayIndexOutOfBoundsException e2) {
+					dlg.setPrezime("");
+				}
+				
+				dlg.setVisible(true);
+				if(dlg.isOkay()) {
+					dlm.set(index, dlg.getTextFieldIme().getText() + 
+							" " + dlg.getTextFieldPrezime().getText());
+				}
+				
+			}
+		});
 		btnModify.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panelSouth.add(btnModify);
 	}

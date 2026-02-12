@@ -9,18 +9,47 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgIgrac extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldIme;
 	private JTextField textFieldPrezime;
+	private boolean okay;
+
+	public JTextField getTextFieldIme() {
+		return textFieldIme;
+	}
+
+	public void setIme(String ime) {
+		this.textFieldIme.setText(ime);
+	}
+
+	public JTextField getTextFieldPrezime() {
+		return textFieldPrezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.textFieldPrezime.setText(prezime);
+	}
+
+	public boolean isOkay() {
+		return okay;
+	}
+
+	public void setOkay(boolean okay) {
+		this.okay = okay;
+	}
 
 	/**
 	 * Launch the application.
@@ -39,6 +68,7 @@ public class DlgIgrac extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgIgrac() {
+		setModal(true); // Jako bitno kako bi program pokupio input sa dijaloga!
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -121,12 +151,34 @@ public class DlgIgrac extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(textFieldIme.getText().length() >= 2 &&
+								textFieldPrezime.getText().length() >= 2) {
+							setOkay(true);
+							dispose();
+						}else {
+							JOptionPane.showMessageDialog(null, 
+									"Ime i prezime moraju da imaju minimalno 2 slova", 
+									"Nevalidan input", 
+									JOptionPane.WARNING_MESSAGE);
+							setOkay(false);
+						}
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
